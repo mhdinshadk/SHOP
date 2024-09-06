@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-   <section className=' bg-hero bg-cover bg-center bg-no-repeat h-[744px] w-full' id='home'>
+   <section className=' bg-hero bg-cover bg-center bg-no-repeat h-[744px] w-full rounded-md' id='home'>
 		<div className='relative top-24 xs:top-72 px-6 sm:px-20'> 
 			<h4 className='upparcase medium-18 tracking-wider'>
 				Fashoin Essantial

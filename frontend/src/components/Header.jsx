@@ -6,10 +6,10 @@ import { MdClose, MdMenu } from 'react-icons/md';
 import { FaBasketShopping } from 'react-icons/fa6';
 import { ShopContext } from '../context/ShopContext';
 
-const Header = () => {
+const Header = ({setShowLogin}) => {
 	const [menuOpened,setMenuOpened] = useState(false);
 	const toggleMenu = () => setMenuOpened(!menuOpened);
-	const {cartItems} = useContext(ShopContext)
+	// const {cartItems} = useContext(ShopContext)
   return (
 	<header className='fixed right-0 left-0 mx-auto z-10'>
 		<div className='px-8 bg-white'>
@@ -35,11 +35,11 @@ const Header = () => {
 				):(<MdClose onClick={toggleMenu} className='md:hidden cursor-pointer hover:text-secondary text-2xl'/>)}
 
 				<div className='flexBetween gap-x-2 sm:gap-x-5'>
-					<Link className='flex'>
+					<Link to={'/cart'} className='flex'>
 					<FaBasketShopping className='text-[22px]' />
 					<span className="relative flexCenter w-2  h-2 rounded-full bg-secondary text-white medium-14 -top-1"></span>
 					</Link>
-					<button className='btn-outline rounded-full'>
+					<button onClick={()=> setShowLogin(true)} className='btn-outline rounded-full'>
 						Login
 					</button>
 				</div>
