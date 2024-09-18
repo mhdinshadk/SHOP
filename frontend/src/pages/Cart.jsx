@@ -1,9 +1,11 @@
 import React,{useContext} from 'react'
 import { ShopContext } from '../context/ShopContext'
 import {TbTrash} from 'react-icons/tb'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 const Cart = () => {
-	const {cartItems,all_products,removeFromCart} = useContext(ShopContext)
+	const {cartItems,all_products,removeFromCart,getTotalCartAmount} = useContext(ShopContext)
+	const navigate = useNavigate()
   return (
 	<section className='max-padd-container pt-20'>
 		<div className='py-10'>
@@ -45,26 +47,26 @@ const Cart = () => {
 					<div>
 						<div className='flexBetween py-3'>
 							<h4 className='medium-18'>Subtotal:</h4>
-							<h4 className='text-gray-30 font-semibold'>${0}</h4>
+							<h4 className='text-gray-30 font-semibold'>${getTotalCartAmount()}</h4>
 						</div>
 						<hr />
 						<div className='flexBetween py-3'>
 							<h4 className='medium-18'>Shipping Fee:</h4>
-							<h4 className='text-gray-30 font-semibold'>${0}</h4>
+							<h4 className='text-gray-30 font-semibold'>${getTotalCartAmount()===0?0:2}</h4>
 						</div>
 						<hr />
 						<div className='flexBetween py-3'>
 							<h4 className='medium-18'>Total</h4>
-							<h4 className='bold-18'>${0}</h4>
+							<h4 className='bold-18'>${getTotalCartAmount()=== 0?0:getTotalCartAmount()+2}</h4>
 						</div>
 					</div>
-					<button className='btn-secondary w-52 rounded'>Proceed To Cehckout</button>
+					<button onClick={()=> navigate('/order')} className='btn-secondary w-52 rounded'>Proceed To Cehckout</button>
 				</div>
 				<div className='flex flex-1 flex-col gap-8'>
 					<h4 className='bold-20 capitalize'>Your Coupon Code Enter here :</h4>
 					<div className='flexBetween h-[2.8rem] bg-primary ring-1 ring-slate-900/10 w-full max-w-[488px] rounded'>
 						<input type='text' placeholder='Coupone Code' className='pl-3 bg-transparent border-none outline-none' />
-						<button className='btn-dark rounded relative !px-10 !py-3'>Submit</button>
+						<button  className='btn-dark rounded relative !px-10 !py-3'>Submit</button>
 					</div>
 				</div>
 			</div>

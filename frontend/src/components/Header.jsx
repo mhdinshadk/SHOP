@@ -9,7 +9,7 @@ import { ShopContext } from '../context/ShopContext';
 const Header = ({setShowLogin}) => {
 	const [menuOpened,setMenuOpened] = useState(false);
 	const toggleMenu = () => setMenuOpened(!menuOpened);
-	// const {cartItems} = useContext(ShopContext)
+	const {getTotalCartAmount} = useContext(ShopContext)
   return (
 	<header className='fixed right-0 left-0 mx-auto z-10'>
 		<div className='px-8 bg-white'>
@@ -37,7 +37,7 @@ const Header = ({setShowLogin}) => {
 				<div className='flexBetween gap-x-2 sm:gap-x-5'>
 					<Link to={'/cart'} className='flex'>
 					<FaBasketShopping className='text-[22px]' />
-					<span className="relative flexCenter w-2  h-2 rounded-full bg-secondary text-white medium-14 -top-1"></span>
+					<span className={getTotalCartAmount()>0 ?"relative flexCenter w-2  h-2 rounded-full bg-secondary text-white medium-14 -top-1" : "w-2 h-2 rounded-full bg-transparent"}></span>
 					</Link>
 					<button onClick={()=> setShowLogin(true)} className='btn-outline rounded-full'>
 						Login
