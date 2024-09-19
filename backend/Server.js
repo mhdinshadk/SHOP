@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import {connectDb} from './config/db.js'
 import productRouter from './routes/productRoute.js';
+import path from 'path';
 
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(cors())
 
 //api endPoint
 app.use('/api/product',productRouter)
+app.use('/uploads', express.static(path.join(path.resolve(), 'uploads')));
 
 app.get('/',(req,res)=> {
 	res.send("API WORKING")
